@@ -25,7 +25,7 @@ Feature: login form(UA)(not registered)
 
   Scenario: Submit button
     Then Then the button /submit/ should be visible
-    And the name of object /submit/ should be equal to /купують/
+    And the name of object /submit/ should be equal to /Авторизуватися/
 
     When the user clicks on object /submit/
     Then the current URL should be equal to {https://birzha.tech/login}

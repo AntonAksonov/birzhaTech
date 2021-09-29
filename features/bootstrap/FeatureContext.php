@@ -309,7 +309,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.login');
         foreach ($elements as $element) {
             if ($element->getText() == 'Вхід') {
-                echo 'PASSED';
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . $element->getText();
             }
@@ -325,7 +325,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.registration');
         foreach ($elements as $element) {
             if ($element->getText() == 'Реєстрація') {
-                echo 'PASSED';
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . " " . $element->getText();
             }
@@ -380,7 +380,7 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectInputloginShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('xpath', '//*[@id="inputLogin"]');
+        $element = $page->findAll('сss', '.inputLogin');
 
         if ($element[0]->isVisible()) {
             echo 'VISIBLE';
@@ -396,7 +396,7 @@ class FeatureContext extends RawMinkContext implements Context
     {
 
     $page = $this->getSession()->getPage();
-        $elements = $page->findAll('xpath', '/html/body/main/div/div/form/label[1]');
+        $elements = $page->findAll('css', '.inputLogin');
         foreach ($elements as $element) {
             if ($element[0]->getText() == 'Логін') {
                 echo 'PASSED' . " " .  $element->getText();
@@ -422,7 +422,7 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectInputpasswordShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('css', '.inputPassword');
+        $element = $page->findAll('css', '.registration_form_plainPassword');
 
         if ($element[0]->isVisible()) {
             echo 'VISIBLE';
@@ -437,10 +437,10 @@ class FeatureContext extends RawMinkContext implements Context
     public function theLabelForInputpasswordShouldBeParol()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('xpath', '/html/body/main/div/div/form/label[2]');
+        $elements = $page->findAll('xpath', '//*[@id="registration_form_plainPassword"]');
         foreach ($elements as $element) {
             if ($element->getText() == 'Пароль') {
-                echo 'PASSED';
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . $element->getText();
             }
@@ -453,7 +453,7 @@ class FeatureContext extends RawMinkContext implements Context
     public function theValueOfOfObjectInputpasswordShouldBeEqualToNull()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.inputLogin');
+        $elements = $page->findAll('css', '.inputPassword');
         foreach ($elements as $element) {
             if ($element->getText() == NULL) {
                 echo 'PASSED';
@@ -487,7 +487,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.checkbbox');
         foreach ($elements as $element) {
             if ($element->getText() == 'Запам`ятати мене') {
-                echo 'PASSED';
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . " " . $element->getText();
             }
@@ -510,7 +510,7 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
     /**
-     * @Then the name of object \/submit\/ should be equal to \/купують\/
+     * @Then the name of object \/submit\/ should be equal to \/Авторизуватися\/
      */
     public function theNameOfObjectSubmitShouldBeEqualToKupuiut()
     {
@@ -551,7 +551,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.inputLogin');
         foreach ($elements as $element) {
             if ($element[0]->getText() == '+38(000)00-00-00-0') {
-                echo 'PASSED';
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . " " . $element->getText();
             }
@@ -566,6 +566,229 @@ class FeatureContext extends RawMinkContext implements Context
         if ($this->getSession()->getCurrentUrl() == 'https://birzha.tech/login') {
             echo 'PASSED |' . 'CURRENT URL: ' . $this->getSession()->getCurrentUrl();
         }
+    }
+
+    /**
+     * @Then /^the current URL should be equal to \{https:\/\/birzha\.tech\/register\}$/
+     */
+    public function theCurrentURLShouldBeEqualToHttpsBirzhaTechRegister()
+    {
+        if ($this->getSession()->getCurrentUrl() == 'https://birzha.tech/register') {
+            echo 'PASSED |' . 'CURRENT URL: ' . $this->getSession()->getCurrentUrl();
+        }
+    }
+
+    /**
+     * @Given /^the name of the object \/page title\/ should be equal to \/РЕЄСТРАЦІЯ\/$/
+     */
+    public function theNameOfTheObjectPageTitleShouldBeEqualToРЕЄСТРАЦІЯ()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.h1');
+        foreach ($elements as $element) {
+            if ($element->getText() == 'РЕЄСТРАЦІЯ') {
+                echo 'PASSED' . " " .  $element->getText();
+            } else {
+                echo 'FALSE' . $element->getText();
+            }
+        }
+    }
+
+    /**
+     * @Then /^the object \/inputEmail\/ should be visible$/
+     */
+    public function theObjectInputEmailShouldBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->findAll('сss', '.registration_form_email');
+
+        if ($element[0]->isVisible()) {
+            echo 'VISIBLE';
+        } else {
+            echo 'NOT FOUND';
+        }
+    }
+
+    /**
+     * @Given /^the label for \/inputEmail\/ should be \/Логін\/$/
+     */
+    public function theLabelForInputEmailShouldBeЛогін()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.registration_form_email');
+        foreach ($elements as $element) {
+            if ($element[0]->getText() == 'Email') {
+                echo 'PASSED' . " " .  $element->getText();
+                var_dump($element);
+            } else {
+                echo 'FALSE' . $element->getText();
+            }
+        }
+
+    }
+
+    /**
+     * @Given /^the value of of object \/inputEmail\/ should be equal to \/\+38\(000\)00\-00\-00\-0\/$/
+     */
+    public function theValueOfOfObjectInputEmailShouldBeEqualTo380000000000()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.registration_form_email');
+        foreach ($elements as $element) {
+            if ($element[0]->getText() == NULL) {
+                echo 'PASSED';
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
+    }
+
+    /**
+     * @Then /^the object \/termsCheckbox\/ should be visible$/
+     */
+    public function theObjectTermsCheckboxShouldBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->findAll('css', '.registration_form_agreeTerms');
+
+        if ($element[0]->isVisible()) {
+            echo 'VISIBLE';
+        } else {
+            echo 'NOT FOUND';
+        }
+    }
+
+    /**
+     * @Given /^the label  of of object \/termsCheckbox\/ should be equal to \/Я підтверджую свою згоду\/$/
+     */
+    public function theLabelOfOfObjectTermsCheckboxShouldBeEqualToЯПідтверджуюСвоюЗгоду()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.registration_form_agreeTerms');
+        foreach ($elements as $element) {
+            if ($element->getText() == 'Я підтверджую свою згоду') {
+                echo 'PASSED' . " " . $element->getText();
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
+    }
+
+    /**
+     * @When /^the user clicks on object \/registerSubmit\/$/
+     */
+    public function theUserClicksOnObjectRegisterSubmit()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.registration_form_submit');
+        foreach ($elements as $item) {
+            if ($item->isVisible()) {
+                $item->click();
+            }
+        }
+        echo $this->getSession()->getCurrentUrl();
+    }
+
+    /**
+     * @Given /^the object \/register Page title\/ should be visible$/
+     */
+    public function theObjectRegisterPageTitleShouldBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->findAll('xpath', '/html/body/main/div/div/h1');
+
+        if ($element[0]->isVisible()) {
+            echo 'VISIBLE';
+        } else {
+            echo 'NOT FOUND';
+        }
+    }
+
+    /**
+     * @Then /^the object \/register input Login\/ should be visible$/
+     */
+    public function theObjectRegisterInputLoginShouldBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->findAll('сss', '.registration_form_login');
+
+        if ($element[0]->isVisible()) {
+            echo 'VISIBLE';
+        } else {
+            echo 'NOT FOUND';
+        }
+    }
+
+    /**
+     * @Given /^the label for \/register input Login\/ should be \/Логін\/$/
+     */
+    public function theLabelForRegisterInputLoginShouldBeЛогін()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.registration_form_login');
+        foreach ($elements as $element) {
+            if ($element[0]->getText() == 'Логін') {
+                echo 'PASSED' . " " .  $element->getText();
+                var_dump($element);
+            } else {
+                echo 'FALSE' . $element->getText();
+            }
+        }
+    }
+
+    /**
+     * @Given /^the value of of object \/register input Login\/ should be equal to \/\+38\(000\)00\-00\-00\-0\/$/
+     */
+    public function theValueOfOfObjectRegisterInputLoginShouldBeEqualTo380000000000()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.registration_form_login');
+        foreach ($elements as $element) {
+            if ($element[0]->getText() == '+38(000)00-00-00-0') {
+                echo 'PASSED' . " " . $element->getText();
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
+    }
+
+    /**
+     * @Then /^the object \/registerInputPassword\/ should be visible$/
+     */
+    public function theObjectRegisterInputPasswordShouldBeVisible()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->findAll('css', '.inputPassword');
+
+        if ($element[0]->isVisible()) {
+            echo 'VISIBLE';
+        } else {
+            echo 'NOT FOUND';
+        }
+    }
+
+    /**
+     * @Given /^the label for \/registerInputPassword\/ should be \/Пароль\/$/
+     */
+    public function theLabelForRegisterInputPasswordShouldBeПароль()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('xpath', '//*[@id="inputPassword"]');
+        foreach ($elements as $element) {
+            if ($element->getText() == 'Пароль') {
+                echo 'PASSED' . " " . $element->getText();
+            } else {
+                echo 'FALSE' . $element->getText();
+            }
+        }
+    }
+
+    /**
+     * @Given /^the value of of object \/registerInputPassword\/ should be equal to NULL$/
+     */
+    public function theValueOfOfObjectRegisterInputPasswordShouldBeEqualToNULL()
+    {
+        throw new PendingException();
     }
 
 }
