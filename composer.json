@@ -13,5 +13,13 @@
     "require": {
         "ext-curl": "*",
         "php-webdriver/webdriver": "^1.11"
+    },
+    "extra": {
+        "patches": {
+            "behat/behat": {
+                "#1239: Fix specifications locator to find feature files" : "https://github.com/Behat/Behat/files/3652984/behat-run-single-feature.patch.txt"
+            }
+        }
     }
+
 }

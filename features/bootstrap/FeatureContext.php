@@ -1,5 +1,7 @@
 <?php
 
+ini_set('log_errors', 'On');
+ini_set('error_log', 'features/bootstrap/errors.log');
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
@@ -28,6 +30,7 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theUserNavigatesToHttpsBirzhaTech()
     {
+
         $session = $this->getSession();
         $session->visit($this->locatePath('/'));
         echo $this->getSession()->getCurrentUrl();
@@ -59,16 +62,14 @@ class FeatureContext extends RawMinkContext implements Context
         $page = $this->getSession()->getPage();
 
         $element = $page->find('css', '.logo');
-         var_dump($element->getAttribute('src'));
-//        $elements = $page->findAll('css', '.logo');
-//        foreach ($elements as $element) {
-//            if ($element->getAttribute('src') == '/images/logo.png') {
-//                echo 'PASSED';
-//            } else {
-//               var_dump($element->getAttribute('src')) ;
-//            }
-//        }
+
+        if ($element->getAttribute('src') == '/images/logo.png') {
+            echo 'PASSED';
+        } else {
+            var_dump($element->getAttribute('src'));
+        }
     }
+
 
     /**
      * @Then the object \/menu\/ should be visible
@@ -367,7 +368,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.h3');
         foreach ($elements as $element) {
             if ($element->getText() == 'АВТОРИЗАЦІЯ') {
-                echo 'PASSED' . " " .  $element->getText();
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . $element->getText();
             }
@@ -395,11 +396,11 @@ class FeatureContext extends RawMinkContext implements Context
     public function theLabelForInputloginShouldBeLogin()
     {
 
-    $page = $this->getSession()->getPage();
+        $page = $this->getSession()->getPage();
         $elements = $page->findAll('css', '.inputLogin');
         foreach ($elements as $element) {
             if ($element[0]->getText() == 'Логін') {
-                echo 'PASSED' . " " .  $element->getText();
+                echo 'PASSED' . " " . $element->getText();
                 var_dump($element);
             } else {
                 echo 'FALSE' . $element->getText();
@@ -541,7 +542,6 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
 
-
     /**
      * @Given /^the value of of object \/inputLogin\/ should be equal to \/\+38\(000\)00\-00\-00\-0\/$/
      */
@@ -575,8 +575,7 @@ class FeatureContext extends RawMinkContext implements Context
     {
         if ($this->getSession()->getCurrentUrl() == 'https://birzha.tech/register') {
             echo 'PASSED |' . 'CURRENT URL: ' . $this->getSession()->getCurrentUrl();
-        }
-        else {
+        } else {
             throw ERROR;
         }
     }
@@ -590,7 +589,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.h1');
         foreach ($elements as $element) {
             if ($element->getText() == 'РЕЄСТРАЦІЯ') {
-                echo 'PASSED' . " " .  $element->getText();
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . $element->getText();
             }
@@ -621,7 +620,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.registration_form_email');
         foreach ($elements as $element) {
             if ($element[0]->getText() == 'Email') {
-                echo 'PASSED' . " " .  $element->getText();
+                echo 'PASSED' . " " . $element->getText();
                 var_dump($element);
             } else {
                 echo 'FALSE' . $element->getText();
@@ -682,9 +681,9 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectRegisterPageTitleShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('xpath', '/html/body/main/div/div/h1');
+        $element = $page->find('xpath', '/html/body/main/div/div/h1');
 
-        if ($element[0]->isVisible()) {
+        if ($element->isVisible()) {
             echo 'VISIBLE';
         } else {
             echo 'NOT FOUND';
@@ -715,7 +714,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.registration_form_login');
         foreach ($elements as $element) {
             if ($element[0]->getText() == 'Логін') {
-                echo 'PASSED' . " " .  $element->getText();
+                echo 'PASSED' . " " . $element->getText();
                 var_dump($element);
             } else {
                 echo 'FALSE' . $element->getText();
@@ -799,7 +798,19 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function fillTheRegisterInputLoginWithValue380673548514()
     {
-        throw new PendingException();
+        try {
+
+            $page = $this->getSession()->getPage();
+            $element = $page->find('сss', '.inputLogin');
+
+            if ($element->isVisible()) {
+                $element->setValue('+38(067)354-85-14');
+            } else {
+                echo 'NOT FOUND';
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 
     /**
@@ -827,7 +838,7 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
     /**
-     * @Then /^fill the \/inputLogin\/ with value \/\+38\(067\)354\-85\-14\/$/
+     * @Then /^fill the \/inputLogin\/ with value \/\+38\(095\)470\-04\-86\/$/
      */
     public function fillTheInputLoginWithValue380673548514()
     {
@@ -835,14 +846,14 @@ class FeatureContext extends RawMinkContext implements Context
         $element = $page->find('сss', '.inputLogin');
 
         if ($element->isVisible()) {
-            $element->setValue('+38(067)354-85-14');
+            $element->setValue('+38(095)470-04-86');
         } else {
             echo 'NOT FOUND';
         }
     }
 
     /**
-     * @Given /^fill the \/inputPassword\/ with value \/test1111\/$/
+     * @Given /^fill the \/inputPassword\/ with value \/123456789\/$/
      */
     public function fillTheInputPasswordWithValueTest1111()
     {
@@ -850,7 +861,7 @@ class FeatureContext extends RawMinkContext implements Context
         $element = $page->find('css', '.registration_form_plainPassword');
 
         if ($element->isVisible()) {
-            $element->setValue('test1111');
+            $element->setValue('123456789');
         } else {
             echo 'NOT FOUND';
         }
@@ -879,13 +890,6 @@ class FeatureContext extends RawMinkContext implements Context
         throw new PendingException();
     }
 
-    /**
-     * @Then the name of object \/info\/ should be equal to \/Не маєш власного облікового запису?\/
-     */
-    public function theNameOfObjectInfoShouldBeEqualToNeMaieshVlasnogoOblikovogoZapisu()
-    {
-        throw new PendingException();
-    }
 
     /**
      * @Then the link \/info\/ should be visible
@@ -931,6 +935,39 @@ class FeatureContext extends RawMinkContext implements Context
      * @Then the name of object \/registerSubmit\/ should be equal to \/Авторизуватися\/
      */
     public function theNameOfObjectRegistersubmitShouldBeEqualToAvtorizuvatisia()
+    {
+        throw new PendingException();
+    }
+
+
+
+//        $page = $this->getSession()->getPage();
+//        $elements = $page->findAll('css', '.inputLogin');
+//        foreach ($elements as $element) {
+//            if ($element[0]->getText() == 'Логін') {
+//                echo 'PASSED' . " " .  $element->getText();
+//                var_dump($element);
+//            } else {
+//                echo 'FALSE' . $element->getText();
+//            }
+//        }
+
+
+    /**
+     * @Then /^the current URL should be equal to \{https:\/\/birzha\.tech\}$/
+     */
+    public function theCurrentURLShouldBeEqualToHttpsBirzhaTech()
+    {
+        if ($this->getSession()->getCurrentUrl() == '/') {
+            echo 'PASSED |' . 'CURRENT URL: ' . $this->getSession()->getCurrentUrl();
+        }
+    }
+
+
+    /**
+     * @Given /^the name of object \/info\/ should be equal to \/Не маєш власного облікового запису\?\/$/
+     */
+    public function theNameOfObjectInfoShouldBeEqualToНеМаєшВласногоОбліковогоЗапису()
     {
         throw new PendingException();
     }

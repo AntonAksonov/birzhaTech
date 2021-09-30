@@ -6,11 +6,11 @@ Feature: register form(UA)(not registered)
 
     When the user clicks on object /register/
 
-  Scenario: Validate Login Form
+  Scenario: Validate register Form
 
     Then the current URL should be equal to {https://birzha.tech/register}
-    And the object /register Page title/ should be visible
-    And the name of the object /page title/ should be equal to /РЕЄСТРАЦІЯ/
+#    And the object /register Page title/ should be visible
+#    And the name of the object /page title/ should be equal to /РЕЄСТРАЦІЯ/
 
     Then the object /registerInputLogin/ should be visible
     And the label for /registerInputLogin/ should be /Логін/

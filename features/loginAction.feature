@@ -12,8 +12,8 @@ Feature: login action
     And the object /inputLogin/ should be visible
     And the object /inputPassword/ should be visible
 
-    Then fill the /inputLogin/ with value /+38(067)354-85-14/
-    And fill the /inputPassword/ with value /test1111/
+    Then fill the /inputLogin/ with value /+38(095)470-04-86/
+    And fill the /inputPassword/ with value /123456789/
 
     Then the object /checkBox/ should be visible
     And click on object /checkBox/
@@ -22,4 +22,4 @@ Feature: login action
     Then the button /submit/ should be visible
 
     Then the user clicks on object /submit/
-    Then the current URL should be equal to {https://birzha.tech/login}
+    Then the current URL should be equal to {https://birzha.tech}

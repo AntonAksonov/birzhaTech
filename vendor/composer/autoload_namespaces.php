@@ -10,5 +10,5 @@ return array(
     'Bex\\Behat\\ScreenshotExtension\\' => array($vendorDir . '/bex/behat-screenshot/src'),
     'Behat\\MinkExtension' => array($vendorDir . '/behat/mink-extension/src'),
     'Behat\\Gherkin' => array($vendorDir . '/behat/gherkin/src'),
-    '' => array($vendorDir . '/ciaranmcnulty/behat-stepthroughextension/src', $vendorDir . '/bex/behat-extension-driver-locator/src'),
+    '' => array($vendorDir . '/bex/behat-extension-driver-locator/src', $vendorDir . '/ciaranmcnulty/behat-stepthroughextension/src'),
 );
