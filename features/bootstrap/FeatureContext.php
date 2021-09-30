@@ -495,7 +495,7 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
     /**
-     * @Then Then the button \/submit\/ should be visible
+     * @Then the button \/submit\/ should be visible
      */
     public function thenTheButtonSubmitShouldBeVisible()
     {
@@ -576,6 +576,9 @@ class FeatureContext extends RawMinkContext implements Context
         if ($this->getSession()->getCurrentUrl() == 'https://birzha.tech/register') {
             echo 'PASSED |' . 'CURRENT URL: ' . $this->getSession()->getCurrentUrl();
         }
+        else {
+            throw ERROR;
+        }
     }
 
     /**
@@ -610,9 +613,9 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
     /**
-     * @Given /^the label for \/inputEmail\/ should be \/Логін\/$/
+     * @Given /^the label for \/inputEmail\/ should be \/Email\/$/
      */
-    public function theLabelForInputEmailShouldBeЛогін()
+    public function theLabelForInputEmailShouldBeEmail()
     {
         $page = $this->getSession()->getPage();
         $elements = $page->findAll('css', '.registration_form_email');
@@ -625,22 +628,6 @@ class FeatureContext extends RawMinkContext implements Context
             }
         }
 
-    }
-
-    /**
-     * @Given /^the value of of object \/inputEmail\/ should be equal to \/\+38\(000\)00\-00\-00\-0\/$/
-     */
-    public function theValueOfOfObjectInputEmailShouldBeEqualTo380000000000()
-    {
-        $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.registration_form_email');
-        foreach ($elements as $element) {
-            if ($element[0]->getText() == NULL) {
-                echo 'PASSED';
-            } else {
-                echo 'FALSE' . " " . $element->getText();
-            }
-        }
     }
 
     /**
@@ -705,7 +692,7 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
     /**
-     * @Then /^the object \/register input Login\/ should be visible$/
+     * @Then /^the object \/registerInputLogin\/ should be visible$/
      */
     public function theObjectRegisterInputLoginShouldBeVisible()
     {
@@ -720,7 +707,7 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
     /**
-     * @Given /^the label for \/register input Login\/ should be \/Логін\/$/
+     * @Given /^the label for \/registerInputLogin\/ should be \/Логін\/$/
      */
     public function theLabelForRegisterInputLoginShouldBeЛогін()
     {
@@ -737,7 +724,7 @@ class FeatureContext extends RawMinkContext implements Context
     }
 
     /**
-     * @Given /^the value of of object \/register input Login\/ should be equal to \/\+38\(000\)00\-00\-00\-0\/$/
+     * @Given /^the value of of object \/registerInputLogin\/ should be equal to \/\+38\(000\)00\-00\-00\-0\/$/
      */
     public function theValueOfOfObjectRegisterInputLoginShouldBeEqualTo380000000000()
     {
@@ -791,4 +778,160 @@ class FeatureContext extends RawMinkContext implements Context
         throw new PendingException();
     }
 
+    /**
+     * @Given /^the value of of object \/inputEmail\/ should be equal to NULL$/
+     */
+    public function theValueOfOfObjectInputEmailShouldBeEqualToNULL()
+    {
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.registration_form_email');
+        foreach ($elements as $element) {
+            if ($element[0]->getText() == NULL) {
+                echo 'PASSED';
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
+    }
+
+    /**
+     * @Then /^fill the \/registerInputLogin\/ with value \/\+38\(067\)354\-85\-14\/$/
+     */
+    public function fillTheRegisterInputLoginWithValue380673548514()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^fill the \/registerInputPassword\/ with value \/test1111\/$/
+     */
+    public function fillTheRegisterInputPasswordWithValueTest1111()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^fill the \/inputEmail\/ with value \/whiletablesits@gmail\.com\/$/
+     */
+    public function fillTheInputEmailWithValueWhiletablesitsGmailCom()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Given /^click on object \/termsCheckbox\/$/
+     */
+    public function clickOnObjectTermsCheckbox()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then /^fill the \/inputLogin\/ with value \/\+38\(067\)354\-85\-14\/$/
+     */
+    public function fillTheInputLoginWithValue380673548514()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->find('сss', '.inputLogin');
+
+        if ($element->isVisible()) {
+            $element->setValue('+38(067)354-85-14');
+        } else {
+            echo 'NOT FOUND';
+        }
+    }
+
+    /**
+     * @Given /^fill the \/inputPassword\/ with value \/test1111\/$/
+     */
+    public function fillTheInputPasswordWithValueTest1111()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->find('css', '.registration_form_plainPassword');
+
+        if ($element->isVisible()) {
+            $element->setValue('test1111');
+        } else {
+            echo 'NOT FOUND';
+        }
+    }
+
+    /**
+     * @Given /^click on object \/checkBox\/$/
+     */
+    public function clickOnObjectCheckBox()
+    {
+        $page = $this->getSession()->getPage();
+        $element = $page->findAll('css', '.checkbox');
+        foreach ($element as $item) {
+            if ($item->isVisible()) {
+                $item->click();
+            }
+        }
+    }
+
+
+    /**
+     * @Then the object \/info\/ should be visible
+     */
+    public function theObjectInfoShouldBeVisible()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the name of object \/info\/ should be equal to \/Не маєш власного облікового запису?\/
+     */
+    public function theNameOfObjectInfoShouldBeEqualToNeMaieshVlasnogoOblikovogoZapisu()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the link \/info\/ should be visible
+     */
+    public function theLinkInfoShouldBeVisible()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the value of attribute href of object \/info\/ should be equal to {\/register}
+     */
+    public function theValueOfAttributeHrefOfObjectInfoShouldBeEqualToRegister()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the name of link \/info\/ should be equal to \/Увійдіть\/
+     */
+    public function theNameOfLinkInfoShouldBeEqualToUviidit()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @When the user clicks on link \/info\/
+     */
+    public function theUserClicksOnLinkInfo()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then Then the button \/registerSubmit\/ should be visible
+     */
+    public function thenTheButtonRegistersubmitShouldBeVisible()
+    {
+        throw new PendingException();
+    }
+
+    /**
+     * @Then the name of object \/registerSubmit\/ should be equal to \/Авторизуватися\/
+     */
+    public function theNameOfObjectRegistersubmitShouldBeEqualToAvtorizuvatisia()
+    {
+        throw new PendingException();
+    }
 }

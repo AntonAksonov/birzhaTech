@@ -12,13 +12,13 @@ Feature: register form(UA)(not registered)
     And the object /register Page title/ should be visible
     And the name of the object /page title/ should be equal to /РЕЄСТРАЦІЯ/
 
-    Then the object /register input Login/ should be visible
-    And the label for /register input Login/ should be /Логін/
-    And the value of of object /register input Login/ should be equal to /+38(000)00-00-00-0/
+    Then the object /registerInputLogin/ should be visible
+    And the label for /registerInputLogin/ should be /Логін/
+    And the value of of object /registerInputLogin/ should be equal to /+38(000)00-00-00-0/
 
     Then the object /inputEmail/ should be visible
-    And the label for /inputEmail/ should be /Логін/
-    And the value of of object /inputEmail/ should be equal to /+38(000)00-00-00-0/
+    And the label for /inputEmail/ should be /Email/
+    And the value of of object /inputEmail/ should be equal to NULL
 
     Then the object /registerInputPassword/ should be visible
     And the label for /registerInputPassword/ should be /Пароль/
@@ -28,8 +28,8 @@ Feature: register form(UA)(not registered)
     And the label  of of object /termsCheckbox/ should be equal to /Я підтверджую свою згоду/
 
   Scenario: Submit button
-    Then Then the button /submit/ should be visible
-    And the name of object /submit/ should be equal to /Авторизуватися/
+    Then Then the button /registerSubmit/ should be visible
+    And the name of object /registerSubmit/ should be equal to /Авторизуватися/
 
     When the user clicks on object /registerSubmit/
     Then the current URL should be equal to {https://birzha.tech/register}

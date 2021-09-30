@@ -24,8 +24,23 @@ Feature: login form(UA)(not registered)
     And the label  of of object /checkBox/ should be equal to /Запам`ятати мене/
 
   Scenario: Submit button
-    Then Then the button /submit/ should be visible
+    Then the button /submit/ should be visible
     And the name of object /submit/ should be equal to /Авторизуватися/
 
     When the user clicks on object /submit/
     Then the current URL should be equal to {https://birzha.tech/login}
+
+    When the user clicks on object /submit/
+    Then the current URL should be equal to {https://birzha.tech/login}
+
+  Scenario: loginFormInfo
+    Then the object /info/ should be visible
+    And the name of object /info/ should be equal to /Не маєш власного облікового запису?/
+
+    Then the link /info/ should be visible
+    And the value of attribute href of object /info/ should be equal to {/register}
+    And the name of link /info/ should be equal to /Увійдіть/
+
+    When the user clicks on link /info/
+    Then the current URL should be equal to {https://birzha.tech/register}
+

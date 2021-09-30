@@ -1,0 +1,25 @@
+Feature: login action
+
+  Background:
+    Given the user navigates to {https://birzha.tech/}
+    Then the button /login/ should be visible
+
+    When the user clicks on object /login/
+
+  Scenario: Validate Login Form
+
+    Then the current URL should be equal to {https://birzha.tech/login}
+    And the object /inputLogin/ should be visible
+    And the object /inputPassword/ should be visible
+
+    Then fill the /inputLogin/ with value /+38(067)354-85-14/
+    And fill the /inputPassword/ with value /test1111/
+
+    Then the object /checkBox/ should be visible
+    And click on object /checkBox/
+
+  Scenario: Submit button
+    Then the button /submit/ should be visible
+
+    Then the user clicks on object /submit/
+    Then the current URL should be equal to {https://birzha.tech/login}
