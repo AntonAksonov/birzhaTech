@@ -9,8 +9,8 @@ Feature: register form(UA)(not registered)
   Scenario: Validate register Form
 
     Then the current URL should be equal to {https://birzha.tech/register}
-#    And the object /register Page title/ should be visible
-#    And the name of the object /page title/ should be equal to /РЕЄСТРАЦІЯ/
+    And the object /register Page title/ should be visible
+    And the name of the object /page title/ should be equal to /РЕЄСТРАЦІЯ/
 
     Then the object /registerInputLogin/ should be visible
     And the label for /registerInputLogin/ should be /Логін/
@@ -29,7 +29,7 @@ Feature: register form(UA)(not registered)
 
   Scenario: Submit button
     Then Then the button /registerSubmit/ should be visible
-    And the name of object /registerSubmit/ should be equal to /Авторизуватися/
+    And the name of object /registerSubmit/ should be equal to /Наступний крок/
 
     When the user clicks on object /registerSubmit/
     Then the current URL should be equal to {https://birzha.tech/register}

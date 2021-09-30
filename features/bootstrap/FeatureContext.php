@@ -2,6 +2,7 @@
 
 ini_set('log_errors', 'On');
 ini_set('error_log', 'features/bootstrap/errors.log');
+
 use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\PyStringNode;
@@ -586,14 +587,13 @@ class FeatureContext extends RawMinkContext implements Context
     public function theNameOfTheObjectPageTitleShouldBeEqualToРЕЄСТРАЦІЯ()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.h1');
-        foreach ($elements as $element) {
-            if ($element->getText() == 'РЕЄСТРАЦІЯ') {
-                echo 'PASSED' . " " . $element->getText();
-            } else {
-                echo 'FALSE' . $element->getText();
-            }
+        $elements = $page->find('css', 'h1');
+        if ($elements->getText() == 'РЕЄСТРАЦІЯ') {
+            echo 'PASSED' . " " . $elements->getText();
+        } else {
+            echo 'FALSE' . $elements->getText();
         }
+
     }
 
     /**
@@ -681,10 +681,10 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectRegisterPageTitleShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->find('xpath', '/html/body/main/div/div/h1');
 
+        $element = $page->find('css', 'h1');
         if ($element->isVisible()) {
-            echo 'VISIBLE';
+            echo 'VISIBLE' . " " . $element->getText();
         } else {
             echo 'NOT FOUND';
         }
@@ -696,10 +696,10 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectRegisterInputLoginShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('сss', '.registration_form_login');
+        $element = $page->find('сss', '.registration_form_login');
 
-        if ($element[0]->isVisible()) {
-            echo 'VISIBLE';
+        if ($element->isVisible()) {
+            echo 'VISIBLE'. " " . $element->getText();
         } else {
             echo 'NOT FOUND';
         }
@@ -928,15 +928,30 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function thenTheButtonRegistersubmitShouldBeVisible()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+        $element = $page->findAll('css', '.submit');
+
+        if ($element[0]->isVisible()) {
+            echo 'VISIBLE';
+        } else {
+            echo 'NOT FOUND';
+        }
     }
 
     /**
-     * @Then the name of object \/registerSubmit\/ should be equal to \/Авторизуватися\/
+     * @Then the name of object \/registerSubmit\/ should be equal to \/Наступний крок\/
      */
     public function theNameOfObjectRegistersubmitShouldBeEqualToAvtorizuvatisia()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+        $elements = $page->findAll('css', '.submit');
+        foreach ($elements as $element) {
+            if ($element->getText() == 'Наступний крок') {
+                echo 'PASSED' . " " . $element->getText();
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
     }
 
 
