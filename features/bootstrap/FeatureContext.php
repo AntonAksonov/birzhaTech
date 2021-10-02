@@ -754,9 +754,9 @@ class FeatureContext extends RawMinkContext implements Context
     {
         $page = $this->getSession()->getPage();
 //        $element = $page->findAll('css', '.inputPassword');
-        $element = $page->findAll('xpath', '//*[@id="registration_form_plainPassword"]');
+        $element = $page->find('xpath', '//*[@id="registration_form_plainPassword"]');
 
-        if ($element[0]->isVisible()) {
+        if ($element->isVisible()) {
             echo 'VISIBLE';
         } else {
             echo 'NOT FOUND';
