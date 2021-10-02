@@ -4,10 +4,10 @@ Feature: register form(UA)(not registered)
     Given the user navigates to {https://birzha.tech/}
     Then the button /register/ should be visible
 
-    When the user clicks on object /register/
 
   Scenario: Validate register Form
 
+    When the user clicks on object /register/
     Then the current URL should be equal to {https://birzha.tech/register}
     And the object /register Page title/ should be visible
     And the name of the object /page title/ should be equal to /РЕЄСТРАЦІЯ/
@@ -27,7 +27,6 @@ Feature: register form(UA)(not registered)
     Then the object /termsCheckbox/ should be visible
     And the label  of of object /termsCheckbox/ should be equal to /Я підтверджую свою згоду/
 
-  Scenario: Submit button
     Then Then the button /registerSubmit/ should be visible
     And the name of object /registerSubmit/ should be equal to /Наступний крок/
 

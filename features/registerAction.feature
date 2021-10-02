@@ -2,13 +2,13 @@ Feature: register action
 
   Background:
     Given the user navigates to {https://birzha.tech/}
-    Then the button /login/ should be visible
+    Then the button /register/ should be visible
 
-    When the user clicks on object /login/
 
   Scenario: Validate Login Form
 
-    Then the current URL should be equal to {https://birzha.tech/login}
+    When the user clicks on object /register/
+    Then the current URL should be equal to {https://birzha.tech/register}
     And the object /registerInputLogin/ should be visible
     And the object /registerInputPassword/ should be visible
     And the object /inputEmail/ should be visible
@@ -20,7 +20,6 @@ Feature: register action
 #    Then the object /termsCheckbox/ should be visible
 #    And click on object /termsCheckbox/
 #
-#  Scenario: Submit button
 #    Then Then the button /registerSubmit/ should be visible
 #
 #    When the user clicks on object /registerSubmit/

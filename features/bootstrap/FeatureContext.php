@@ -399,11 +399,11 @@ class FeatureContext extends RawMinkContext implements Context
     {
 
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.inputLogin');
+//        $elements = $page->findAll('css', '.inputLogin');
+        $elements = $page->findAll('xpath', '/html/body/main/div/div/form/label[1]');
         foreach ($elements as $element) {
-            if ($element[0]->getText() == 'Логін') {
+            if ($element->getText() == 'Логін') {
                 echo 'PASSED' . " " . $element->getText();
-                var_dump($element);
             } else {
                 echo 'FALSE' . $element->getText();
             }
@@ -460,7 +460,7 @@ class FeatureContext extends RawMinkContext implements Context
         $elements = $page->findAll('css', '.inputPassword');
         foreach ($elements as $element) {
             if ($element->getText() == NULL) {
-                echo 'PASSED';
+                echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . " " . $element->getText();
             }
@@ -494,6 +494,7 @@ class FeatureContext extends RawMinkContext implements Context
                 echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . " " . $element->getText();
+
             }
         }
     }
@@ -871,6 +872,7 @@ class FeatureContext extends RawMinkContext implements Context
         } else {
             echo 'NOT FOUND';
         }
+        echo $element->getText();
     }
 
     /**
@@ -886,6 +888,7 @@ class FeatureContext extends RawMinkContext implements Context
         } else {
             echo 'NOT FOUND';
         }
+        echo $element->getText();
     }
 
     /**
@@ -909,8 +912,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectInfoShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-//        $element = $page->findAll('css', '.btn-primary');
-        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]');
+        $element = $page->find('css', '.info');
+//        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
         if ($element->isVisible()) {
             echo 'VISIBLE';
         } else {
@@ -926,7 +929,8 @@ class FeatureContext extends RawMinkContext implements Context
     {
 
       $page = $this->getSession()->getPage();
-        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+//        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+        $element = $page->find('css', 'form div a');
         if ($element->isVisible()) {
             echo 'VISIBLE' . " " . $element->getText();
         } else {
@@ -941,8 +945,8 @@ class FeatureContext extends RawMinkContext implements Context
     {
         $page = $this->getSession()->getPage();
 
-        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
-
+//        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+        $element = $page->find('css', 'form div a');
         if ($element->getAttribute('href') == '/register') {
             echo 'PASSED'. " ". $element->getAttribute('href');
         } else {
@@ -956,13 +960,13 @@ class FeatureContext extends RawMinkContext implements Context
     public function theNameOfLinkInfoShouldBeEqualToUviidit()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
-        foreach ($elements as $element) {
-            if ($element->getText() == 'Увійдіть') {
+//        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+        $element = $page->find('css', 'form div a');
+            if ($element->getText() === 'Увійдіть') {
                 echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . " " . $element->getText();
-            }
+
         }
     }
 
@@ -972,12 +976,16 @@ class FeatureContext extends RawMinkContext implements Context
     public function theUserClicksOnLinkInfo()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
-        foreach ($elements as $item) {
-            if ($item->isVisible()) {
-                $item->click();
-            }
+//        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+        $element = $page->find('css', 'form div a');
+        if ($element->isVisible()){
+            $element->click();
         }
+//        foreach ($element as $item) {
+//            if ($item->isVisible()) {
+//                $item->click();
+//            }
+//        }
         echo $this->getSession()->getCurrentUrl();
     }
 
@@ -1044,7 +1052,7 @@ class FeatureContext extends RawMinkContext implements Context
     {
         $page = $this->getSession()->getPage();
 //        $elements = $page->findAll('css', '.btn-primary');
-        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]');
+        $elements = $page->findAll('xpath', '/html/body/main/div/div/form/div[2]/span');
         foreach ($elements as $element) {
             if ($element->getText() == 'Не маєш власного облікового запису?') {
                 echo 'PASSED' . " " . $element->getText();
