@@ -14,7 +14,7 @@ Feature: register form(UA)(not registered)
 
     Then the object /registerInputLogin/ should be visible
     And the label for /registerInputLogin/ should be /Логін/
-    And the value of of object /registerInputLogin/ should be equal to /+38(000)00-00-00-0/
+#    And the value of of object /registerInputLogin/ should be equal to /+38(000)00-00-00-0/
 
     Then the object /inputEmail/ should be visible
     And the label for /inputEmail/ should be /Email/

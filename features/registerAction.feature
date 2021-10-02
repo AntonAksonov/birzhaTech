@@ -3,15 +3,15 @@ Feature: register action
   Background:
     Given the user navigates to {https://birzha.tech/}
     Then the button /login/ should be visible
-#
-#    When the user clicks on object /login/
-#
-#  Scenario: Validate Login Form
-#
-#    Then the current URL should be equal to {https://birzha.tech/login}
-#    And the object /registerInputLogin/ should be visible
-#    And the object /registerInputPassword/ should be visible
-#    And the object /inputEmail/ should be visible
+
+    When the user clicks on object /login/
+
+  Scenario: Validate Login Form
+
+    Then the current URL should be equal to {https://birzha.tech/login}
+    And the object /registerInputLogin/ should be visible
+    And the object /registerInputPassword/ should be visible
+    And the object /inputEmail/ should be visible
 #
 #    Then fill the /registerInputLogin/ with value /+38(067)354-85-14/
 #    And fill the /registerInputPassword/ with value /test1111/

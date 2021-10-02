@@ -34,7 +34,7 @@ Feature: login form(UA)(not registered)
     Then the current URL should be equal to {https://birzha.tech/login}
 
   Scenario: loginFormInfo
-    Then the object /info/ should be visible
+#    Then the object /info/ should be visible
     And the name of object /info/ should be equal to /Не маєш власного облікового запису?/
 
     Then the link /info/ should be visible

@@ -382,7 +382,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectInputloginShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('сss', '.inputLogin');
+//        $element = $page->findAll('css', '.inputLogin');
+        $element = $page->findAll('xpath', '//*[@id="inputLogin"]');
 
         if ($element[0]->isVisible()) {
             echo 'VISIBLE';
@@ -424,7 +425,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectInputpasswordShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('css', '.registration_form_plainPassword');
+//        $element = $page->findAll('css', '.registration_form_plainPassword');
+        $element = $page->findAll('xpath', '//*[@id="inputPassword"]');
 
         if ($element[0]->isVisible()) {
             echo 'VISIBLE';
@@ -549,7 +551,7 @@ class FeatureContext extends RawMinkContext implements Context
     public function theValueOfOfObjectInputLoginShouldBeEqualTo380000000000()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.inputLogin');
+        $elements = $page->findAll('css', '.inputLogin .data-mask');
         foreach ($elements as $element) {
             if ($element[0]->getText() == '+38(000)00-00-00-0') {
                 echo 'PASSED' . " " . $element->getText();
@@ -577,7 +579,7 @@ class FeatureContext extends RawMinkContext implements Context
         if ($this->getSession()->getCurrentUrl() == 'https://birzha.tech/register') {
             echo 'PASSED |' . 'CURRENT URL: ' . $this->getSession()->getCurrentUrl();
         } else {
-            throw ERROR;
+            echo 'FALSE';
         }
     }
 
@@ -602,7 +604,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectInputEmailShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('сss', '.registration_form_email');
+//        $element = $page->findAll('сss', '.registration_form_email');
+        $element = $page->findAll('xpath', '//*[@id="registration_form_email"]');
 
         if ($element[0]->isVisible()) {
             echo 'VISIBLE';
@@ -617,9 +620,10 @@ class FeatureContext extends RawMinkContext implements Context
     public function theLabelForInputEmailShouldBeEmail()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.registration_form_email');
+//        $elements = $page->findAll('css', '.registration_form_email');
+        $elements = $page->find('xpath', '//*[@id="registration_form"]/div[2]/label');
         foreach ($elements as $element) {
-            if ($element[0]->getText() == 'Email') {
+            if ($element->getText() == 'Email') {
                 echo 'PASSED' . " " . $element->getText();
                 var_dump($element);
             } else {
@@ -636,8 +640,10 @@ class FeatureContext extends RawMinkContext implements Context
     {
         $page = $this->getSession()->getPage();
         $element = $page->findAll('css', '.registration_form_agreeTerms');
+        $element = $page->find('xpath', '//*[@id="registration_form_agreeTerms"]');
 
-        if ($element[0]->isVisible()) {
+
+        if ($element->isVisible()) {
             echo 'VISIBLE';
         } else {
             echo 'NOT FOUND';
@@ -650,9 +656,10 @@ class FeatureContext extends RawMinkContext implements Context
     public function theLabelOfOfObjectTermsCheckboxShouldBeEqualToЯПідтверджуюСвоюЗгоду()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.registration_form_agreeTerms');
+//        $elements = $page->findAll('css', '.registration_form_agreeTerms');
+        $elements = $page->find('xpath', '//*[@id="registration_form"]/div[4]/label');
         foreach ($elements as $element) {
-            if ($element->getText() == 'Я підтверджую свою згоду') {
+            if ($element->getText() === 'Я підтверджую свою згоду') {
                 echo 'PASSED' . " " . $element->getText();
             } else {
                 echo 'FALSE' . " " . $element->getText();
@@ -696,7 +703,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectRegisterInputLoginShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->find('сss', '.registration_form_login');
+        $element = $page->find('xpath','//*[@id="registration_form_login"]');
+//        $element = $page->findAll('css', '.registration_form_login');
 
         if ($element->isVisible()) {
             echo 'VISIBLE'. " " . $element->getText();
@@ -711,9 +719,10 @@ class FeatureContext extends RawMinkContext implements Context
     public function theLabelForRegisterInputLoginShouldBeЛогін()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.registration_form_login');
+        $elements = $page->find('xpath','//*[@id="registration_form"]/div[1]/label');
+//        $elements = $page->findAll('css', '.registration_form_login');
         foreach ($elements as $element) {
-            if ($element[0]->getText() == 'Логін') {
+            if ($element->getText() == 'Логін') {
                 echo 'PASSED' . " " . $element->getText();
                 var_dump($element);
             } else {
@@ -744,7 +753,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function theObjectRegisterInputPasswordShouldBeVisible()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->findAll('css', '.inputPassword');
+//        $element = $page->findAll('css', '.inputPassword');
+        $element = $page->findAll('xpath', '//*[@id="registration_form_plainPassword"]');
 
         if ($element[0]->isVisible()) {
             echo 'VISIBLE';
@@ -759,7 +769,7 @@ class FeatureContext extends RawMinkContext implements Context
     public function theLabelForRegisterInputPasswordShouldBeПароль()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('xpath', '//*[@id="inputPassword"]');
+        $elements = $page->findAll('xpath', '//*[@id="registration_form"]/div[3]/label');
         foreach ($elements as $element) {
             if ($element->getText() == 'Пароль') {
                 echo 'PASSED' . " " . $element->getText();
@@ -774,7 +784,16 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theValueOfOfObjectRegisterInputPasswordShouldBeEqualToNULL()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+//        $elements = $page->findAll('css', '.inputPassword');
+        $elements = $page->find('xpath', '//*[@id="registration_form_plainPassword"]');
+        foreach ($elements as $element) {
+            if ($element->getText() == NULL) {
+                echo 'PASSED' . " " . $element->getText();
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
     }
 
     /**
@@ -783,9 +802,10 @@ class FeatureContext extends RawMinkContext implements Context
     public function theValueOfOfObjectInputEmailShouldBeEqualToNULL()
     {
         $page = $this->getSession()->getPage();
-        $elements = $page->findAll('css', '.registration_form_email');
+//        $elements = $page->findAll('css', '.registration_form_email');
+        $elements = $page->find('xpath', '//*[@id="registration_form_email"]');
         foreach ($elements as $element) {
-            if ($element[0]->getText() == NULL) {
+            if ($element->getText() == NULL) {
                 echo 'PASSED';
             } else {
                 echo 'FALSE' . " " . $element->getText();
@@ -843,7 +863,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function fillTheInputLoginWithValue380673548514()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->find('сss', '.inputLogin');
+//        $element = $page->find('сss', '.inputLogin');
+        $element = $page->find('xpath', '//*[@id="inputLogin"]');
 
         if ($element->isVisible()) {
             $element->setValue('+38(095)470-04-86');
@@ -858,8 +879,8 @@ class FeatureContext extends RawMinkContext implements Context
     public function fillTheInputPasswordWithValueTest1111()
     {
         $page = $this->getSession()->getPage();
-        $element = $page->find('css', '.registration_form_plainPassword');
-
+//        $element = $page->find('css', '.registration_form_plainPassword');
+        $element = $page->find('xpath', '//*[@id="inputPassword"]');
         if ($element->isVisible()) {
             $element->setValue('123456789');
         } else {
@@ -887,7 +908,14 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theObjectInfoShouldBeVisible()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+//        $element = $page->findAll('css', '.btn-primary');
+        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]');
+        if ($element->isVisible()) {
+            echo 'VISIBLE';
+        } else {
+            echo 'NOT FOUND';
+        }
     }
 
 
@@ -896,7 +924,14 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theLinkInfoShouldBeVisible()
     {
-        throw new PendingException();
+
+      $page = $this->getSession()->getPage();
+        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+        if ($element->isVisible()) {
+            echo 'VISIBLE' . " " . $element->getText();
+        } else {
+            echo 'NOT FOUND';
+        }
     }
 
     /**
@@ -904,7 +939,15 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theValueOfAttributeHrefOfObjectInfoShouldBeEqualToRegister()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+
+        $element = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+
+        if ($element->getAttribute('href') == '/register') {
+            echo 'PASSED'. " ". $element->getAttribute('href');
+        } else {
+            echo 'FALSE' . " " . $element->getAttribute('href');
+        }
     }
 
     /**
@@ -912,7 +955,15 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theNameOfLinkInfoShouldBeEqualToUviidit()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+        foreach ($elements as $element) {
+            if ($element->getText() == 'Увійдіть') {
+                echo 'PASSED' . " " . $element->getText();
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
     }
 
     /**
@@ -920,7 +971,14 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theUserClicksOnLinkInfo()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]/a');
+        foreach ($elements as $item) {
+            if ($item->isVisible()) {
+                $item->click();
+            }
+        }
+        echo $this->getSession()->getCurrentUrl();
     }
 
     /**
@@ -984,6 +1042,15 @@ class FeatureContext extends RawMinkContext implements Context
      */
     public function theNameOfObjectInfoShouldBeEqualToНеМаєшВласногоОбліковогоЗапису()
     {
-        throw new PendingException();
+        $page = $this->getSession()->getPage();
+//        $elements = $page->findAll('css', '.btn-primary');
+        $elements = $page->find('xpath', '/html/body/main/div/div/form/div[2]');
+        foreach ($elements as $element) {
+            if ($element->getText() == 'Не маєш власного облікового запису?') {
+                echo 'PASSED' . " " . $element->getText();
+            } else {
+                echo 'FALSE' . " " . $element->getText();
+            }
+        }
     }
 }
